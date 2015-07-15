@@ -36,19 +36,20 @@ var myVar;
 function foo() {
 
     // your function code here
+	if (MyVar == 1) {
 	navigator.notification.vibrate( 500 );
 
-    myVar = setTimeout(foo(), 5000);
+    setTimeout(foo(), 5000);
+}
 }
 
-
-
-function myFunction() {
-    myVar = setTimeout(function(){ alert("Hello"); }, 3000);
+function ativa() {
+    myVar = 1;
+	foo();
 }
 
 function myStopFunction() {
-    clearTimeout(myVar);
+    myVar = 0;
 }
 
  
@@ -58,7 +59,7 @@ function myStopFunction() {
   <body><center>
     <p><a href="#" onclick="showAlert(); return false;">Mostra alerta</a></p><br>
 	
-	    <button onclick="foo();">
+	    <button onclick="ativa();">
              Vibrate 
         </button>
 <br><br>
