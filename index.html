@@ -10,9 +10,10 @@
 <center>
 <h1> Teste 4 </h1>
 </center>
-<script>
-{ alert('oi');
-}
+
+
+
+
 <div id="container"></div>
 
 <script src="lib/cordova-2.5.0.js"></script>
@@ -20,6 +21,14 @@
 <script src="lib/jquery-1.9.1.min.js"></script>
 <script src="pageslider.js"></script>
 <script src="app.js"></script>
+
+<script type="text/javascript">
+document.addEventListener("deviceReady", deviceReady, false);
+
+function deviceReady() {
+   alert('oi');
+}
+</script>
 
 </body>
 </html>
