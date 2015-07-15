@@ -32,14 +32,22 @@
         );
     }
 
-	 
+function foo() {
+
+    // your function code here
+	navigator.notification.vibrate( 500 );
+
+    setTimeout(foo, 5000);
+}
+
+foo();	 
 	 
     </script>
   </head>
   <body>
     <p><a href="#" onclick="showAlert(); return false;">Show Alert</a></p><br>
 	
-	    <button onclick="navigator.notification.vibrate( 1000 );">
+	    <button onclick="foo();">
              Vibrate 
         </button>
 
