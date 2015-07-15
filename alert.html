@@ -31,16 +31,27 @@
             'Done'                  // buttonName
         );
     }
+var myVar;
 
 function foo() {
 
     // your function code here
 	navigator.notification.vibrate( 500 );
 
-    setTimeout(foo, 5000);
+    myVar = setTimeout(foo(), 5000);
 }
 
-foo();	 
+
+
+function myFunction() {
+    myVar = setTimeout(function(){ alert("Hello"); }, 3000);
+}
+
+function myStopFunction() {
+    clearTimeout(myVar);
+}
+
+ 
 	 
     </script>
   </head>
@@ -51,5 +62,11 @@ foo();
              Vibrate 
         </button>
 
+		
+		 <button onclick="myStopFunction();">
+             Para 
+        </button>
+		
+		
   </body>
 </html>
