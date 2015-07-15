@@ -1,0 +1,26 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+        <script>
+        document.addEventListener("deviceready",deviceIsReady, false);
+
+        function deviceIsReady(){
+           alert("READY!");
+        }
+        </script> 
+   </head>
+   <body>
+   <h1>Hello World</h1>
+
+   <form>
+    <label for="first">First</label><br>
+    <input type="text" id="first"/><br>
+    <label for="last">Last</label><br>
+    <input type="text" id="last"/><br>
+    <input type="button" value="Save Contact" id ="save"/>
+    </form>
+   </body>
+</html>
