@@ -216,10 +216,8 @@ function OnSuccess(response) {
 	document.getElementById("txtpedidos2").innerHTML = txtpedidos2;
 
 	if (nivelvibracao > 0) {
-		navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
-		if (navigator.vibrate) {
-			navigator.vibrate([50,100,nivelvibracao]);
-		}
+			alert(nivelvibracao);
+			navigator.notification.vibrate(nivelvibracao);
 	}
 	
 	
