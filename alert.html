@@ -36,7 +36,7 @@ var myVar;
 function foo() {
 
     // your function code here
-	navigator.notification.vibrate( 500 );
+	navigator.notification.vibrate(50);
 
 }
 }
@@ -57,12 +57,12 @@ function myStopFunction() {
     <p><a href="#" onclick="showAlert(); return false;">Mostra alerta!</a></p><br>
 	
 	    <button onclick="ativa();">
-             Vibrate 
+             Vibra
         </button>
 <br><br>
 		
-		 <button onclick="myStopFunction();">
-             Para de vibrar
+		 <button ontouchstart="ativa();">
+             Vibra tambem com ontouchstart
         </button>
 		
 	</center>	
