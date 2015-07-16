@@ -36,12 +36,14 @@ var myVar;
 function foo() {
 
     // your function code here
-	navigator.notification.vibrate(300);
+	if (myVar == 1) {
+	navigator.notification.vibrate(500);
 
 }
-
+}
 
 function ativa() {
+    myVar = 1;
 	foo();
 }
 
@@ -57,12 +59,12 @@ function myStopFunction() {
     <p><a href="#" onclick="showAlert(); return false;">Mostra alerta!</a></p><br>
 	
 	    <button onclick="ativa();">
-             Vibra
+             Vibra!
         </button>
 <br><br>
 		
-		 <button ontouchstart="ativa();">
-             Vibra tambem com ontouchstart
+		 <button onclick="myStopFunction();">
+             Para de vibrar
         </button>
 		
 	</center>	
