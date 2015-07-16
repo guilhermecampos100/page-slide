@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> 
+<script type="text/javascript">
+var counter = 2;
+var ultimamesa = 0;
+
+
+
+
+$(function() {
+    prepare();
+    update();
+});
+
+function update() {
+    $("#timer").html("Refreshing in " + counter + " seconds...");
+    counter--;
+
+    if (counter == 0) {
+        counter = 5;
+        prepare();
+    }
+
+    setTimeout(update, 1000);
+}
+
+function prepare() {
+	var segundos = new Date().getTime() / 1000;
+	
+
+	// pra evitar cache passa parametro segundos
+    $.ajax({
+        url: "http://chamagar.com/dashboard/painel/tabletjson.asp?ultimamesa=" + ultimamesa + "&segundos=" + segundos ,
+		data:{},
+        success: OnSuccess, // this function plots the new data
+        error: OnError
+    });
+}
+
+function OnSuccess(response) {
+    var arr = JSON.parse(response);
+    var txtmesa = "";
+	var corclasse = "";
+	var mesa = "";
+	var tempo = "";
+
+	if (arr.mesa.length <= 0) {
+		corclasse = "panel-primary";
+		mesa = "-";
+		tempo = "chamagarcom.com";
+		ultimamesa = 0;
+	}
+	else
+	{
+		corclasse = arr.mesa[0].corclasse;
+		mesa = arr.mesa[0].mesa;
+		tempo = arr.mesa[0].tempo;	
+		ultimamesa = arr.mesa[0].mesa;		
+	}
+		
+	
+	
+	txtmesa +=    "<div class='panel " + corclasse + "' >";
+    txtmesa +=    "  	<div class='panel-heading'>";
+    txtmesa +=    "  		<div class='row'>";
+    txtmesa +=   "			 	<div class='col-xs-12 text-center'>";
+    txtmesa +=   "	                <div class='veryhuge'>" + mesa + "</div>";
+    txtmesa +=   "                                <div>" + tempo + "</div>";
+    txtmesa +=   "                            </div>";
+    txtmesa +=   "                       </div>";
+    txtmesa +=   "                  </div>";
+    txtmesa +=   "           </div>";
+		
+
+					
+	document.getElementById("txtmesa").innerHTML = txtmesa;
+}
+	function OnError() {
+	alert("em teste, aguarde e tente novamente...");
+	}
+	
+</script>
+
+	
+</head>
+
+<body>
+
+    <div id="wrapper">
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12 col-md-6">
+					<div id="txtmesa"></div>
+                </div>
+            </div>
+            <!-- /.row -->
+    </div>
+    <!-- /#wrapper -->
+
+
+</body>
+
+</html>
