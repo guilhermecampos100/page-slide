@@ -217,8 +217,7 @@ function OnSuccess(response) {
 	document.getElementById("txtpedidos2").innerHTML = txtpedidos2;
 
 	if (nivelvibracao > 0) {
-			alert(nivelvibracao);
-			navigator.notification.vibrate(500);
+			navigator.notification.vibrate(nivelvibracao);
 	}
 	
 	
