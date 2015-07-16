@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Ajax Example</title>
-<h1> Ajax </h1>
+<h1> Ajax </h1>	
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> 
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
@@ -12,11 +12,11 @@ function connect(e)
 {
 	var term= {button:e};
 	$.ajax({
-		url:'http://www.indiageeks.in/tutorials/reply.php',
+		url:'http://chamagar.com/page-slide/json.asp',
 		type:'POST',
 		data:term,
 		dataType:'json',
-		error:function(jqXHR,text_status,strError){	alert('no connection'); },
+		error:function(jqXHR,text_status,strError){	alert('no connection..'); },
 		timeout:60000,
 		success:function(data){
 		$('#result').html('');
