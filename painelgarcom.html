@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> 
 
 <script type="text/javascript">
 
@@ -46,9 +44,8 @@ function update() {
 function prepare() {
 	var segundos = new Date().getTime() / 1000;
     $.ajax({
-        type: "post",
-        url: "paineljson.asp?token=" +  token + "&segundos=" + segundos,
-        contentType: "application/json; charset=utf-8",
+        url: "http://chamagar.com/dashboard/painel/paineljson.asp?token=" +  token + "&segundos=" + segundos,
+		data:{},
         success: OnSuccess, // this function plots the new data
         error: OnError
     });
@@ -66,7 +63,7 @@ function OnSuccess(response) {
 	
 
 	
-    txtgarcom += "<a class='navbar-brand' href='login.asp'><table><tr><td><img src='/fotos/" + foto_garcom + "' width='25px' ></td><td> &nbsp; &nbsp; " +   nome_garcom + "</td></tr></table></a>";
+    txtgarcom += "<a class='navbar-brand' href='login.asp'><table><tr><td><img src='http://chamagar.com/fotos/" + foto_garcom + "' width='25px' ></td><td> &nbsp; &nbsp; " +   nome_garcom + "</td></tr></table></a>";
 	document.getElementById("txtgarcom").innerHTML = txtgarcom;
 	
 
@@ -94,33 +91,34 @@ function OnSuccess(response) {
 			nivelvibracao = "500";
 	}	
 		
-	txtmesas += "<div class='col-lg-3 col-md-6'>";
+	txtmesas += "<div class='col-lg-3 col-md-6' id='blocom" + arr.mesas[i].codigomesa + "' >";
 	txtmesas += "            <div class='panel " + arr.mesas[i].corclasse + "'>";
 	txtmesas += "                <div class='panel-heading'>";
 	txtmesas += "                    <div class='row'>";
-	txtmesas += "                        <div class='col-xs-4'>";
+	txtmesas += "                        <div class='col-xs-3'>";
 	txtmesas += "                            <center>";
 	txtmesas += "                            <center>";
 	txtmesas += "                            <center>";
 	txtmesas += "                            <center>";
 	txtmesas += "                            <center>";
-	txtmesas += "    <img src='/fotos/"+ arr.mesas[i].foto_garcom + "' width='40px'>";
+	txtmesas += "    <img src='http://chamagar.com/fotos/"+ arr.mesas[i].foto_garcom + "' width='40px'>";
 	txtmesas += "                            <font style='font-size:11px;'>" + arr.mesas[i].nome_garcom + "</font>";
 	txtmesas += "                            </center>";
 	txtmesas += "                        </div>";
-	txtmesas += "                        <div class='col-xs-8 text-right'>";
+	txtmesas += "   <div class='col-xs-6 text-center'> </div>"
+	txtmesas += "                        <div class='col-xs-3 text-right'>";
 	txtmesas += "                            <div class='huge'>" + arr.mesas[i].mesa + "</div>";
 	txtmesas += "                            <div>" + arr.mesas[i].tempo + "</div>";
 	txtmesas += "                        </div>";
 	txtmesas += "                    </div>";
 	txtmesas += "                </div>";
-	txtmesas += "                <a href='#' onclick='processaacao(1,\"" + arr.mesas[i].codigomesa + "\");'>";
-	txtmesas += "                    <div class='panel-footer'>";
-	txtmesas += "                        <span class='pull-left'>Cancelar</span>";
+	txtmesas += "                <div onclick='processaacao(1,\"" + arr.mesas[i].codigomesa + "\");'>";
+	txtmesas += "                    <div id='m" + arr.mesas[i].codigomesa + "' class='panel-footer'>";
+	txtmesas += "                        <span class='pull-left'><button class='btn btn-xs btn-info'> Cancelar </button></span>";
 	txtmesas += "                        " + stronline;
 	txtmesas += "                        <div class='clearfix'></div>";
 	txtmesas += "                    </div>";
-	txtmesas += "                </a>";
+	txtmesas += "                </div>";
 	txtmesas += "            </div>";
 	txtmesas += "        </div>";
 	}
@@ -165,19 +163,22 @@ function OnSuccess(response) {
         txtpedidos +="<i class='fa " + arr.pedidos[i].classeitem + " fa-fw'></i> &nbsp; " + arr.pedidos[i].quantidade + " </b> &nbsp; " + arr.pedidos[i].itemcardapio; 
         txtpedidos +=" &nbsp; <em>" + arr.pedidos[i].tempo + " </em> &nbsp; <button type='button' class='btn btn-primary btn-xs'>Mesa " + arr.pedidos[i].mesa + "</button> Evaristo &nbsp; <button type='button' class='btn " + arr.pedidos[i].classebotao + " btn-xs'><i class='fa fa-check fa-fw'></i>pendente</button> " + stronline + "</a> ";
 		
+
 		if (arr.pedidos[i].status == '2') {
-			txtlink = "colocar em andamento";
+			acao = 2;
+			txtlink = "<button class='btn btn-xs btn-default'>colocar em andamento</button>";
 			txtaguardando = "";
 			}
 		else
 			{
-			txtlink = "colocar entregue";
+			acao = 3;
+			txtlink = "<button class='btn btn-xs btn-info'>colocar entregue</button>";
 			txtaguardando = "<button class='btn btn-default btn-xs'><font class='fonte10'>Em Andamento</font></button>";
 			}
 
+			
 		
-		
-	txtpedidos2 += "<div class='col-lg-3 col-md-6'>";
+	txtpedidos2 += "<div class='col-lg-3 col-md-6' id='blocop" + arr.pedidos[i].codigopedido + "' >";
 	txtpedidos2 += "            <div class='panel " + arr.pedidos[i].corclasse + "'>";
 	txtpedidos2 += "                <div class='panel-footer'>";
 	txtpedidos2 += "                    <div class='row'>";
@@ -187,7 +188,7 @@ function OnSuccess(response) {
 	txtpedidos2 += "                            <center>";
 	txtpedidos2 += "                            <center>";
 	txtpedidos2 += "                            <center>";
-	txtpedidos2 += "    <img src='/fotos/"+ arr.pedidos[i].foto_garcom + "' width='40px'>";
+	txtpedidos2 += "    <img src='http://chamagar.com/fotos/"+ arr.pedidos[i].foto_garcom + "' width='40px'>";
 	txtpedidos2 += "                            <font style='font-size:11px;'>" + arr.pedidos[i].nome_garcom + "</font>";
 	txtpedidos2 += "                            </center>";
 	txtpedidos2 += "                        </div>";
@@ -199,15 +200,16 @@ function OnSuccess(response) {
 	txtpedidos2 += "                        </div>";
 	txtpedidos2 += "                    </div>";
 	txtpedidos2 += "                </div>";
-	txtpedidos2 += "                <a href='#' onclick='processaacao(2,\"" + arr.pedidos[i].codigopedido + "\");'>";
-	txtpedidos2 += "                    <div class='panel-footer'>";
+	txtpedidos2 += "                <div onclick='processaacao("+ acao + ",\"" + arr.pedidos[i].codigopedido + "\");'>";
+	txtpedidos2 += "                    <div id='p" + arr.pedidos[i].codigopedido + "' class='panel-footer'>";
 	txtpedidos2 += "                        <span class='pull-left'>" + txtlink + "</span>";
 	txtpedidos2 += "                        " + stronline;
 	txtpedidos2 += "                        <div class='clearfix'></div>";
 	txtpedidos2 += "                    </div>";
-	txtpedidos2 += "                </a>";
+	txtpedidos2 += "                </div>";
 	txtpedidos2 += "            </div>";
 	txtpedidos2 += "        </div>";
+
 		
 	}
 	
@@ -230,15 +232,28 @@ function OnError() {
 
 function processaacao(codigoacao,codigo) {
 var acao = "";
-if (codigoacao == 1) { acao = "cancelarmesa"; }
-if (codigoacao == 2) { acao = "receberpedido"; }
-if (codigoacao == 3) { acao = "fecharpesquisa"; }
+if (codigoacao == 1) {
+   acao = "cancelarmesa";
+   $("#m" + codigo).addClass('panel-footer-ativo');
+   $("#blocom" + codigo).fadeOut(300);
+}	
+if (codigoacao == 2 || codigoacao == 3 ) {
+   acao = "receberpedido";
+   $("#p" + codigo).addClass('panel-footer-ativo');
+} 
+
+if (codigoacao == 3) {
+   acao = "receberpedido";
+    $("#p" + codigo).addClass('panel-footer-ativo');
+	$("#blocop" + codigo).fadeOut(300);  
+}
+
+if (codigoacao == 4) { acao = "fecharpesquisa"; }
 
 	var segundos = new Date().getTime() / 1000;
     $.ajax({
-        type: "get",
-        url: "processaacaojson.asp?acao="+ acao + "&codigo="+codigo + "&segundos="+ segundos,
-        contentType: "application/json; charset=utf-8",
+        url: "http://chamagar.com/dashboard/painel/processaacaojson.asp?acao="+ acao + "&codigo="+codigo + "&segundos="+ segundos,
+        data: {},
         success: cancelapedidoOnSuccess, // this function plots the new data
         error: cancelapedidoOnError
     });
@@ -287,7 +302,7 @@ alert("erro");
     <![endif]-->
 <style>
 	.roundedImage {
-    background: url(fotos/fotogarcon.jpg);
+    background: url(http://chamagar.com/fotos/fotogarcon.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 

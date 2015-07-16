@@ -4,6 +4,19 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="css/pageslider.css">
     <link rel="stylesheet" href="css/styles.css">
+	
+<script>	
+{
+	var ua = navigator.userAgent, 
+	event = (ua.match(/iPad|Android/i)) ? "touchstart" : "click";
+
+	$("button,a").bind(event, function()
+	{
+		$(this).trigger('click');
+	});
+}
+</script>
+
 </head>
 <body>
 
@@ -13,7 +26,7 @@
 
 <a href="tablet.html"> Teste Tablet Ajax</a><br><br>
 
-<a href="ajax2.html"> Teste Ajax 2</a><br><br>
+<a href="painelgarcom.html"> App Garçom</a><br><br>
 
 
 </center>

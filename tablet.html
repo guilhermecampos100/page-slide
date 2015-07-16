@@ -90,28 +90,15 @@ function OnSuccess(response) {
 			corfundo = '#5cb85c';
 		}
 	}
-		
-	
-//	txtmesa += "<div class='wrapper " + corclasse + "x' id=wrapper>";	
-//	txtmesa += "<font color=green>adsfasdfasd</font><br><br>";
+
 	
 	txtmesa += "<style>body {color: #fff; background-color: " + corfundo + "}</style>"
 	txtmesa += "<div class='popup'>";
-
-	
-	
-//	txtmesa +=    "<div class='panel " + corclasse + "' >";
-//  txtmesa +=    "  	<div class='panel-heading'>";
-//  txtmesa +=    "  		<div class='row'>";
     txtmesa +=   "			 	<div class='col-xs-12 text-center'>";
     txtmesa +=   "	                <div class='veryhuge'>" + mesa + "</div>";
     txtmesa +=   "                                <div>" + tempo + "</div>";
     txtmesa +=   "                            </div>";
-//    txtmesa +=   "                       </div>";
-//    txtmesa +=   "                  </div>";
-//    txtmesa +=   "           </div>";
-	
-txtmesa +=   "           </div>";	
+	txtmesa +=   "           </div>";	
 
 					
 	document.getElementById("txtmesa").innerHTML = txtmesa;
@@ -131,32 +118,7 @@ txtmesa +=   "           </div>";
     transform: translate(-50%, -50%);
 }
 
-.panel-redx {
-    color: #fff;
-    background-color: #d9534f;
-	height:100%;
-}
 
-.panel-yellowx {
-    color: #fff;
-    background-color: #f0ad4e;
-	height:100%;
-}
-
-.panel-greenx {
-    color: #fff;
-    background-color: #5cb85c;
-	height:100%;	
-}
-
-
-
-.wrapper {
-    min-height: 100%; /* min. height for modern browser */
-    height:auto !important; /* important rule for modern Browser */
-    height:100%; /* min. height for IE */
-    overflow: hidden !important; /* FF scroll-bar */
-}
 
 
 
