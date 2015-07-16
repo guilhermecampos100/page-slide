@@ -16,17 +16,17 @@ function connect(e)
 		type:'POST',
 		data:term,
 		dataType:'json',
-		error:function(jqXHR,text_status,strError){
-		alert(“no connection”);},
+		error:function(jqXHR,text_status,strError){	alert('no connection'); },
 		timeout:60000,
 		success:function(data){
-		$("#result").html("");
+		$('#result').html('');
 		for(var i in data){
-		$("#result").append("<li>"+data[i]+"</li>");
+		$('#result').append('<li>'+data[i]+'</li>');
 			}
 		}
 	});
-}
+}	
+
 </script>
 
 
